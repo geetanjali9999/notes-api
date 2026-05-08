@@ -1,0 +1,13 @@
+
+if already migration happend
+php artisan make:migrate add_remarks_to_notes_table --table=notes
+then run 
+php artisan migrate
+then 
+php artisan migrate:fresh
+
+
+
+
+--- install api route
+
