@@ -18,6 +18,12 @@ class NoteController extends Controller
     // post create a note
     public function store(Request $request)
     {
+        $request->validate([
+            'title' => 'required',
+            'content' => 'required',
+            'remarks' => 'nullable'
+        ]);
+
         $note = Note::create([
             'title' => $request->title,
             'content' => $request->content,
@@ -45,6 +51,12 @@ class NoteController extends Controller
     public function update(Request $request, $id)
     {
         // $note = Note::findorFail($id);
+
+        $request->validate([
+            'title' => 'required',
+            'content' => 'required',
+            'remarks' => 'nullable'
+        ]);
 
         $note = Note::find($id);
         if (!$note) {
