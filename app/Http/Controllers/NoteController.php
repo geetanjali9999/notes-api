@@ -29,13 +29,31 @@ class NoteController extends Controller
     // show one note
     public function show($id)
     {
-        return Note::findorFail($id);
+        // return Note::findorFail($id);
+        $note = Note::find($id);
+        if (!$note) {
+            return response()->json([
+                "status_code" => 404,
+                "massage" => "not found!"
+            ], 404);
+        }
+
+        return response()->json($note);
     }
 
     // put update a note 
     public function update(Request $request, $id)
     {
-        $note = Note::findorFail($id);
+        // $note = Note::findorFail($id);
+
+        $note = Note::find($id);
+        if (!$note) {
+            return response()->json([
+                "status_code" => 404,
+                "massage" => "not found!"
+            ], 404);
+        }
+
         $note->update([
             'title' => $request->title,
             'content' => $request->content,
