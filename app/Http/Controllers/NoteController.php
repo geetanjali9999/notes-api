@@ -10,8 +10,51 @@ class NoteController extends Controller
         return Note::all();
     }
 
+    // public function store(Request $request)
+    // {
+    //     return $request->create($request->all());
+    // }
+
+    // post create a note
     public function store(Request $request)
     {
-        return $request->create($request->all());
+        $note = Note::create([
+            'title' => $request->title,
+            'content' => $request->content,
+            'remarks' => $request->remarks
+        ]);
+        return response()->json($note, 201);
     }
+
+    // show one note
+    public function show($id)
+    {
+        return Note::findorFail($id);
+    }
+
+    // put update a note 
+    public function update(Request $request, $id)
+    {
+        $note = Note::findorFail($id);
+        $note->update([
+            'title' => $request->title,
+            'content' => $request->content,
+            'remarks' => $request->remarks
+        ]);
+
+        return response()->json($note);
+    }
+
+    public function destroy($id)
+    {
+        $note = Note::destroy($id);
+
+        if (!$note) {
+            return response()->json(['message' => 'Note not found'], 404);
+        }
+
+        return response()->json(['message' => 'Note deleted successfully']);
+    }
+
+
 }
