@@ -8,6 +8,7 @@ class NoteController extends Controller
     public function index()
     {
         return Note::all();
+
     }
 
     // public function store(Request $request)
@@ -48,7 +49,7 @@ class NoteController extends Controller
     }
 
     // put update a note 
-    public function update(Request $request, $id)
+    public function update(Request $request, $id = null)
     {
         // $note = Note::findorFail($id);
 
