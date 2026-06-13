@@ -8,6 +8,14 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
+    public function showlogin(){
+        return view('auth.login');
+    }
+
+    public function showregister(){
+        return view('auth.register');
+    }
+    
     // register user
     public function register(Request $request)
     {
