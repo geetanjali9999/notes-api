@@ -5,9 +5,16 @@ use Illuminate\Http\Request;
 
 class NoteController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return Note::all();
+        $notes = Note::all();
+        // return view('index', compact('notes'));
+
+          if ($request->is('api/*')) { // chekc is call by api route or web route
+            return response()->json($notes); // api route
+        }
+
+        return view('index', compact('notes'));
 
     }
 

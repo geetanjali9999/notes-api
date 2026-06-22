@@ -14,15 +14,28 @@ Route::get('/login',[AuthController::class,'showlogin'])->name('login');
 // show register page
 Route::get('/register',[AuthController::class,'showregister'])->name('register');
 
-// process login
-Route::post('/login',[AuthController::class,'login'])->name('login');
-// process register
-Route::post('/register',[AuthController::class,'register'])->name('register');
+// process login for web
+Route::post('/login',[AuthController::class,'weblogin'])->name('login.submit');
+// Route::post('login', [AuthController::class, 'login']);
+
+
+// process register for web
+Route::post('/register',[AuthController::class,'webregister'])->name('register.submit');
+
+// logout route
+Route::post('/logout', [AuthController::class, 'weblogout'])->name('logout');
+
+Route::get('/index', function () {
+    return view('index');
+})->name('home');
 
 Route::middleware('auth')->group(function(){
     Route::get('/notes',[NoteController::class,'index'])->name('notes');
     Route::get('/notes/{id}',[NoteController::class,'show'])->name('notes.show');
     Route::post('/notes/create',[NoteController::class,'store'])->name('notes.create');
     Route::get('/notes/{id}/edit',[NoteController::class,'update'])->name('notes.edit');
-    Route::post('/notes/{id}/delete',[NoteController::class,'destroy'])->name('notes.delete');
+    // Route::post('/notes/{id}/delete',[NoteController::class,'destroy'])->name('notes.delete');
+    Route::delete('/notes/{id}/delete', [NoteController::class,'destroy'])
+    ->name('notes.delete');
 });
+
