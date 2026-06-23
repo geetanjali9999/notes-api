@@ -1,30 +1,32 @@
+@extends('layouts.app')
+@section('content')
 
-<h1>MY Notes List </h1>
-<a href="{{ route('notes.create') }}">Create New Note</a>
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>MY Notes</h1>
 
-    <!-- <div>
-        h2>Welcome, {{ Auth::user()->name }}</h2>
-        <a href="{{ route('logout') }}">Logout</a>
-    </div> -->
-    <h2>Welcome, {{ Auth::user()->name }}</h2>
+    <a href="{{route('notes.create')}}" class="btn btn-primary">Create New Note</a>
+</div>
 
-    <form action="{{ route('logout') }}" method="POST">
-    @csrf
-    <button type="submit">Logout</button>
-</form>
-@foreach  ($notes as $note)
-    <div>
-        <h2>{{ $note->title }}</h2>
-        <p>{{ $note->content }}</p>
-        <a href="{{ route('notes.edit', $note->id) }}">Edit</a>
-        <form action="{{ route('notes.delete', $note->id) }}" method="POST" style="display:inline;">
-            @csrf
-            @method('DELETE')
-            <button type="submit">Delete</button>
-        </form>
-           
+@foreach ($notes as $note)
+    <div class="card mb-3">
+        <div class="card-body">
+
+        <h5 class="card-title">
+            {{$note->title}}
+        </h5>
+        <p class="card-text">{{$note->content}}</p>
+
+        <div class="d-flex gap-2">
+            <a href="{{route('notes.edit',$note->id)}}" class="btn btn-warning">Edit</a>
+
+            <form action="{{route('notes.delete',$note->id)}}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </div>
+        </div>
     </div>
 @endforeach
 
-    <div>
-
+@endsection

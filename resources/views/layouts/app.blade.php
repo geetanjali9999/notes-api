@@ -9,13 +9,13 @@
 </head>
 <body>
 
-    @include('partials.header')
+    @include('partials.header');
 
     <main class="container mt-4">
-        @yield('content')
+        @yield('content');
     </main>
 
-    @include('partials.footer')
+    @include('partials.footer');
 
 </body>
 </html>
