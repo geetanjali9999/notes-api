@@ -7,26 +7,40 @@
     <a href="{{route('notes.create')}}" class="btn btn-primary">Create New Note</a>
 </div>
 
-@foreach ($notes as $note)
-    <div class="card mb-3">
-        <div class="card-body">
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Content</th>
+            <th width="180">Actions</th>
+        </tr>
+    </thead>
 
-        <h5 class="card-title">
-            {{$note->title}}
-        </h5>
-        <p class="card-text">{{$note->content}}</p>
+    <tbody>
+        @foreach($notes as $note)
+        <tr>
+            <td>{{ $note->id }}</td>
+            <td>{{ $note->title }}</td>
+            <td>{{ $note->content }}</td>
+            <td>
+                <a href="{{ route('notes.edit', $note->id) }}"
+                   class="btn btn-warning btn-sm">
+                    Edit
+                </a>
 
-        <div class="d-flex gap-2">
-            <a href="{{route('notes.edit',$note->id)}}" class="btn btn-warning">Edit</a>
+                <form action="{{ route('notes.delete', $note->id) }}"
+                      method="POST"
+                      class="d-inline">
+                    @csrf
+                    @method('DELETE')
 
-            <form action="{{route('notes.delete',$note->id)}}" method="POST">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="btn btn-danger">Delete</button>
-            </form>
-        </div>
-        </div>
-    </div>
-@endforeach
-
-@endsection
+                    <button class="btn btn-danger btn-sm">
+                        Delete
+                    </button>
+                </form>
+            </td>
+        </tr>
+        @endforeach
+    </tbody>
+</table>
