@@ -31,7 +31,8 @@
 
                 <form action="{{ route('notes.delete', $note->id) }}"
                       method="POST"
-                      class="d-inline">
+                      
+                      class="delete-form d-inline">
                     @csrf
                     @method('DELETE')
 
@@ -44,3 +45,40 @@
         @endforeach
     </tbody>
 </table>
+
+
+@endsection
+
+@section('scripts')
+<script>
+document.querySelectorAll('.delete-form').forEach(form => {
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'You want to delete this note?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, Delete'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                form.submit();
+            }
+        });
+    });
+});
+</script>
+
+@if(session('success'))
+<script>
+Swal.fire({
+    icon: 'success',
+    title: 'Deleted!',
+    text: '{{ session("success") }}',
+    timer: 2000,
+    showConfirmButton: false
+});
+</script>
+@endif
+@endsection

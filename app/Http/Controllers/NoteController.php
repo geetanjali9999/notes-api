@@ -23,6 +23,14 @@ class NoteController extends Controller
     //     return $request->create($request->all());
     // }
 
+    //  create note page for web
+    public function create()
+    {
+        
+        // return view('notes.create');
+        return view('create');
+    }
+
     // post create a note
     public function store(Request $request)
     {
@@ -37,7 +45,14 @@ class NoteController extends Controller
             'content' => $request->content,
             'remarks' => $request->remarks
         ]);
-        return response()->json($note, 201);
+        // return response()->json($note, 201);
+
+        if ($request->is('api/*')) { // chekc is call by api route or web route
+           return response()->json($note, 201); // api route
+        }
+
+        // return view('index', compact('notes.create'));
+        return view('create',compact('note'));
     }
 
     // show one note
@@ -83,7 +98,7 @@ class NoteController extends Controller
         return response()->json($note);
     }
 
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
         $note = Note::destroy($id);
 
@@ -91,7 +106,14 @@ class NoteController extends Controller
             return response()->json(['message' => 'Note not found'], 404);
         }
 
-        return response()->json(['message' => 'Note deleted successfully']);
+        
+          if ($request->is('api/*')) { // chekc is call by api route or web route
+            return response()->json(['message' => 'Note deleted successfully']);
+            }
+
+        //  return redirect()->route('index')
+         return redirect()->route('notes')
+                     ->with('success', 'Note deleted successfully.');
     }
 
 
