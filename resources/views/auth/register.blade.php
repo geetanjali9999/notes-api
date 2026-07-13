@@ -15,15 +15,7 @@
     <button type="submit">Register</button>
     <div>Already have an account? <a href="/login">Login here</a></div>
 </form> -->
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <ul class="mb-0">
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -38,6 +30,17 @@
 
 </head>
 <body>
+    @if ($errors->any())
+    <div class="m-0">
+    <div class="alert alert-danger">
+        <ul class="mb-0">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    </div>
+@endif
     <div class="my-container">
         <div class="first-div d-flex justify-content-center">
             <img src="{{ asset('images/logo/app_logo.svg') }}" class="img-fluid" alt="Notes App Logo" width="70">
@@ -70,6 +73,17 @@
             <div class="form-floating mb-3">
                 <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
                 <label for="password">Password</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input type="password"
+                    class="form-control"
+                    id="password_confirmation"
+                    name="password_confirmation"
+                    placeholder="Confirm Password"
+                    required>
+
+                <label for="password_confirmation">Confirm Password</label>
             </div>
 
             <div class="d-flex justify-content-center align-items-center">
