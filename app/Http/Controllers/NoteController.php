@@ -81,12 +81,24 @@ class NoteController extends Controller
         ]);
 
         $note = Note::find($id);
+    //     if ($note->user_fk_id !== auth()->id()) {
+    //     abort(403); // Forbidden
+    // }
+
         if (!$note) {
             return response()->json([
                 "status_code" => 404,
                 "massage" => "not found!"
             ], 404);
         }
+
+        if($note->user_fk_id !== auth()->id()) {
+            return response()->json([
+                "status_code" => 403,
+                "message" => "Forbidden: You do not have permission to update this note."
+            ], 403);
+        }
+      
 
         $note->update([
             'title' => $request->title,
@@ -105,6 +117,13 @@ class NoteController extends Controller
             return response()->json(['message' => 'Note not found'], 404);
         }
 
+        if($note->user_fk_id !== auth()->id()) {
+            return response()->json([
+                "status_code" => 403,
+                "message" => "Forbidden: You do not have permission to delete this note."
+            ], 403);
+        }
+        
         
           if ($request->is('api/*')) { // chekc is call by api route or web route
             return response()->json(['message' => 'Note deleted successfully']);
