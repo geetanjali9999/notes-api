@@ -38,7 +38,7 @@
                 @enderror
 
                 <div class="form-floating mb-3">
-                    <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="{{ old('email') }}" required>
                     <label for="email">Email</label>
                 </div>
 
@@ -48,6 +48,10 @@
                 <div class="form-floating mb-3">
                     <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
                     <label for="password">Password</label>
+                </div>
+                <div class="flex items-center">
+                    <input type="checkbox" name="remember" id="remember" value="true>
+                    <label for="remember">Remember Me</label>
                 </div>
                 <!-- <label for="password">Password:</label>
                 <input type="password" id="password" name="password" required><br><br> -->

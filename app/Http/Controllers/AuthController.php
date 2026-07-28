@@ -23,7 +23,8 @@ class AuthController extends Controller
             'password'=>'required'
         ]);
     
-        if(Auth::attempt($credentials)){
+        $remember=$request->boolean('remember');
+        if(Auth::attempt($credentials, $remember)){
             // dd($request->all());
             $request->session()->regenerate();
             return redirect()->intended('/notes'); // redirect to notes page after login successfully which hit by url /notes
@@ -33,7 +34,7 @@ class AuthController extends Controller
 
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
-        ]);
+        ])->onlyInput('email');
     }
     // web register
     public function webregister(Request $request){

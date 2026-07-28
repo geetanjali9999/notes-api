@@ -47,4 +47,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function notes()
+    {
+        return $this->hasMany(NOte::class, 'user_fk_id');
+    }
 }

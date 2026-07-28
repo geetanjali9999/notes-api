@@ -7,7 +7,10 @@ class NoteController extends Controller
 {
     public function index(Request $request)
     {
-        $notes = Note::all();
+        // $notes = Note::all(); not all note 
+        $notes = NOte::where('user_fk_id', auth()->id())->get(); // get only her note
+        
+        
         // return view('index', compact('notes'));
 
           if ($request->is('api/*')) { // chekc is call by api route or web route
@@ -17,11 +20,6 @@ class NoteController extends Controller
         return view('index', compact('notes'));
 
     }
-
-    // public function store(Request $request)
-    // {
-    //     return $request->create($request->all());
-    // }
 
     //  create note page for web
     public function create()
@@ -43,7 +41,8 @@ class NoteController extends Controller
         $note = Note::create([
             'title' => $request->title,
             'content' => $request->content,
-            'remarks' => $request->remarks
+            'remarks' => $request->remarks,
+            'user_fk_id' => auth()->id(), // Assuming you have authentication set up
         ]);
         // return response()->json($note, 201);
 
