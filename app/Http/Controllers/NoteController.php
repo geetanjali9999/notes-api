@@ -66,6 +66,9 @@ class NoteController extends Controller
             ], 404);
         }
 
+        if ($note->user_fk_id !== auth()->id()) {
+           return response()->json(['message' => 'Forbidden'], 403);
+        }
         return response()->json($note);
     }
 
