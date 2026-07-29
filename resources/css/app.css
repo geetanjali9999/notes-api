@@ -45,7 +45,16 @@
     --border-color: #dee2e6;
 }
 
-[data-theme="dark"] {
+/* ----------------------- on my way adding theme dark  | light  */
+/* [data-theme="dark"] {
+    --bg-color: #121212;
+    --text-color: #e9ecef;
+    --card-bg: #1e1e1e;
+    --border-color: #333;
+} */
+
+/* ----------------------- bootstrap way adding theme dark  | light  */
+[data-bs-theme="dark"] {
     --bg-color: #121212;
     --text-color: #e9ecef;
     --card-bg: #1e1e1e;
@@ -55,9 +64,7 @@
 body {
     background-color: var(--bg-color);
     color: var(--text-color);
-    transition:
-        background-color 0.2s ease,
-        color 0.2s ease;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 .card {
     background-color: var(--card-bg);
