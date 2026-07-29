@@ -7,6 +7,9 @@
 
         <div class="ms-auto">
 
+            <button id="themeToggle" class="btn btn-outline-secondary btn-sm">
+                🌙 Dark Mode
+            </button>
             <span class="text-white me-3">
                 Welcome {{ Auth::user()->name }}
             </span>

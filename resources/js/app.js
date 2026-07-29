@@ -1,25 +1,47 @@
 import './bootstrap';
-// const editModal = document.getElementById('editNoteModal');
+// const themeToggle = document.getElementById('themeToggle');
+// const html = document.documentElement;
 
-// editModal.addEventListener('show.bs.modal', function (event) {
-//     const button = event.relatedTarget;          // the Edit button clicked
-//     const noteId = button.getAttribute('data-note-id');
+// // On page load, apply saved preference
+// const savedTheme = localStorage.getItem('theme') || 'light';
+// html.setAttribute('data-theme', savedTheme);
+// updateButtonText(savedTheme);
 
-//     fetch(`/notes/${noteId}`, {
-//         method: 'GET',
-//         headers: {
-//             'Accept': 'application/json',
-//         }
-//     })
-//     .then(response => response.json())
-//     .then(note => {
-//         document.getElementById('recipient-name').value = note.title;
-//         document.getElementById('content').value = note.content;
-//         document.getElementById('remarks').value = note.remarks;
+// themeToggle.addEventListener('click', function () {
+//     const currentTheme = html.getAttribute('data-theme');
+//     const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
 
-//         // store the id somewhere for the Save button to use later
-//         editModal.setAttribute('data-current-note-id', note.id);
-//     })
-//     .catch(error => console.error('Error fetching note:', error));
+//     html.setAttribute('data-theme', newTheme);
+//     localStorage.setItem('theme', newTheme);
+//     updateButtonText(newTheme);
 // });
 
+// function updateButtonText(theme) {
+//     themeToggle.textContent = theme === 'dark' ? '☀️ Light Mode' : '🌙 Dark Mode';
+// }
+
+// __________________________________________________
+
+
+const themeToggle = document.getElementById('themeToggle');
+const html = document.documentElement;
+
+// on page load, apply saved prefernce
+// const savedTheme = localStorage.getItem('theme')  || 'light';
+const savedTheme = localStorage.getItem('theme') 
+    || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+html.setAttribute('data-theme',savedTheme);
+updateButtonText(savedTheme);
+
+themeToggle.addEventListener('click' , function() {
+    const currentTheme =html.getAttribute('data-theme');
+    const newTheme= currentTheme === 'dark' ? 'light' : 'dark';
+
+    html.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    updateButtonText(newTheme);
+});
+
+function updateButtonText(theme){
+    themeToggle.textContent =theme ==='dark' ? '☀️ Light Mode' : '🌙 Dark Mode';
+}
