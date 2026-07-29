@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\COntrollers\NoteController;
+use App\Http\Controllers\DashboardController;
 
 
 Route::get('/', function () {
@@ -30,6 +31,7 @@ Route::get('/index', function () {
 })->name('home');
 
 Route::middleware('auth')->group(function(){
+    Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard');
     Route::get('/notes',[NoteController::class,'index'])->name('notes');
     // Route::post('/notes/create',[NoteController::class,'store'])->name('notes.create');
     Route::get('/notes/create', [NoteController::class,'create'])->name('notes.create');

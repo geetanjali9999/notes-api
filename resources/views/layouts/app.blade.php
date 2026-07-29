@@ -12,13 +12,13 @@
 </head>
 <body class="d-flex flex-column min-vh-100">
 
-    @include('partials.header');
+    @include('partials.header')
 
     <main class="container mt-4 flex-grow-1">
-        @yield('content');
+        @yield('content')
     </main>
 
-    @include('partials.footer');
+    @include('partials.footer')
 
      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.x/dist/js/bootstrap.bundle.min.js"></script>

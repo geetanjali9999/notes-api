@@ -1,5 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
+        <div class="first-div d-flex justify-content-center">
+            <img src="{{ asset('images/logo/app_logo.svg') }}" class="img-fluid" alt="Notes App Logo" width="40">
+        </div>
 
         <a class=navbar-brand href="#">
             Notes App

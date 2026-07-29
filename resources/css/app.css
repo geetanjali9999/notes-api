@@ -43,6 +43,8 @@
     --text-color: #212529;
     --card-bg: #f8f9fa;
     --border-color: #dee2e6;
+    --bg-color-login:#f5f5f5;
+  
 }
 
 /* ----------------------- on my way adding theme dark  | light  */
@@ -59,6 +61,7 @@
     --text-color: #e9ecef;
     --card-bg: #1e1e1e;
     --border-color: #333;
+    --bg-color-login:#332323ad;
 }
 
 body {

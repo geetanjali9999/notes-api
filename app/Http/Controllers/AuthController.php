@@ -27,7 +27,8 @@ class AuthController extends Controller
         if(Auth::attempt($credentials, $remember)){
             // dd($request->all());
             $request->session()->regenerate();
-            return redirect()->intended('/notes'); // redirect to notes page after login successfully which hit by url /notes
+            // return redirect()->intended('/notes'); // redirect to notes page after login successfully which hit by url /notes
+            return redirect()->intended('/dashboard'); // redirect to notes page after login successfully which hit by url /notes
             // return redirect()->to('index'); // redirect to notes page after login successfully which hit by url /notes
             // return redirect()->route('notes.index'); // redirect to notes page after login successfully which hit by url /notes
         }
