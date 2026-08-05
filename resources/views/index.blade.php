@@ -148,7 +148,7 @@ updateButton.addEventListener('click', function() {
     const content = document.getElementById('content').value;
     const remarks = document.getElementById('remarks').value;
 
-    fetch(`/notes/${noteId}/edit`, {
+    fetch(`${window.APP_PREFIX}/notes/${noteId}/edit`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',

@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'productivity'),
 
     /*
     |--------------------------------------------------------------------------
@@ -123,4 +123,5 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    'route_prefix' => env('APP_ROUTE_PREFIX','productivity'),
 ];

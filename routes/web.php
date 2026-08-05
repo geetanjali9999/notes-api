@@ -30,7 +30,10 @@ Route::get('/index', function () {
     return view('index');
 })->name('home');
 
-Route::middleware('auth')->group(function(){
+// Route::middleware('auth')->group(function(){
+Route::prefix(config('app.route_prefix'))
+    ->middleware('auth')
+    ->group(function (){
     Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard');
     Route::get('/notes',[NoteController::class,'index'])->name('notes');
     // Route::post('/notes/create',[NoteController::class,'store'])->name('notes.create');
@@ -42,4 +45,7 @@ Route::middleware('auth')->group(function(){
     Route::delete('/notes/{id}/delete', [NoteController::class,'destroy'])
     ->name('notes.delete');
 });
+
+
+
 

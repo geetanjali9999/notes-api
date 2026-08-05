@@ -17,7 +17,10 @@ Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
 Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logout']);
 
-Route::middleware('auth:sanctum')->group(function () {
+// Route::middleware('auth:sanctum')->group(function () {
+Route::prefix(config('app.route_prefix'))
+    ->middleware('auth:sanctum')
+    ->group(function(){
     Route::get('notes', [NoteController::class, 'index']);
     Route::get('notes/{id?}', [NoteController::class, 'show']);
     Route::put('notes/{id}', [NoteController::class, 'update']);
