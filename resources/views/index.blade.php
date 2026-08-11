@@ -115,18 +115,12 @@ document.querySelectorAll('.delete-form').forEach(form => {
 
 
 const editModal = document.getElementById('editNoteModal');
-console.log('jaks:- ')
-    console.log(window.APP_PREFIX);
-console.log(window.location.origin);
-console.log(window.location.pathname);
 
 
 editModal.addEventListener('show.bs.modal', function (event) {
     const button =event.relatedTarget;
     const noteId = button.getAttribute('data-note-id');
-    console.log('llapa:- ')
-    console.log(window.APP_PREFIX);
-
+ 
     fetch(`/${window.APP_PREFIX}/notes/${noteId}`,{
         method:'GET',
         headers:{
