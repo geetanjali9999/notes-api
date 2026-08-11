@@ -115,12 +115,19 @@ document.querySelectorAll('.delete-form').forEach(form => {
 
 
 const editModal = document.getElementById('editNoteModal');
+console.log('jaks:- ')
+    console.log(window.APP_PREFIX);
+console.log(window.location.origin);
+console.log(window.location.pathname);
+
 
 editModal.addEventListener('show.bs.modal', function (event) {
     const button =event.relatedTarget;
     const noteId = button.getAttribute('data-note-id');
+    console.log('llapa:- ')
+    console.log(window.APP_PREFIX);
 
-    fetch(`/notes/${noteId}`,{
+    fetch(`/${window.APP_PREFIX}/notes/${noteId}`,{
         method:'GET',
         headers:{
             'Accept':'application/json',
@@ -142,13 +149,16 @@ editModal.addEventListener('show.bs.modal', function (event) {
 const updateButton = document.getElementById('updateNoteButton');
 
 updateButton.addEventListener('click', function() {
+
+    
     
     const noteId = editModal.getAttribute('data-current-note-id');
     const title = document.getElementById('recipient-name').value;
     const content = document.getElementById('content').value;
     const remarks = document.getElementById('remarks').value;
 
-    fetch(`${window.APP_PREFIX}/notes/${noteId}/edit`, {
+    fetch(`/${window.APP_PREFIX}/notes/${noteId}/edit`, {
+    // fetch(`/notes/${noteId}/edit`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
