@@ -1,4 +1,22 @@
 import './bootstrap';
+// tiptop liberay import
+import {Editor} from '@tiptap/core';
+import Starterkit from '@tiptap/starter-kit';
+
+// tiptap editor initialization
+const editorElement = document.getElementById('editor');
+
+if(editorElement){
+    const hiddenTextArea=document.getElementById('content-hidden');
+    const editor = new Editor({
+        element: editorElement,
+        extensions:[Starterkit],
+        content:hiddenTextArea.value,
+        onUpdate: ({editor}) => {
+            hiddenTextArea.value=editor.getHTML();
+        }
+    })
+}
 // -------------------------------------------------- on my way adding theme 
 
 
