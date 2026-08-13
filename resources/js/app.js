@@ -1,7 +1,16 @@
 import './bootstrap';
-// tiptop liberay import
+// tiptop core liberay import
 import {Editor} from '@tiptap/core';
 import Starterkit from '@tiptap/starter-kit';
+
+// tiptop table libary 
+import {Table} from '@tiptap/extension-table'; 
+import {TableRow} from '@tiptap/extension-table-row';
+import {TableCell} from '@tiptap/extension-table-cell';
+import {TableHeader} from '@tiptap/extension-table-header';
+
+// checklist for tiptop
+
 
 // tiptap editor initialization
 const editorElement = document.getElementById('editor');
@@ -10,7 +19,13 @@ if(editorElement){
     const hiddenTextArea=document.getElementById('content-hidden');
     const editor = new Editor({
         element: editorElement,
-        extensions:[Starterkit],
+        extensions:[
+            Starterkit,
+            Table.configure({resizable: true}),
+            TableRow,
+            TableCell,
+            TableHeader,
+        ],
         content:hiddenTextArea.value,
         onUpdate: ({editor}) => {
             hiddenTextArea.value=editor.getHTML();
@@ -36,10 +51,15 @@ if(editorElement){
     document.getElementById('btn-code').addEventListener('click',() => {
         editor.chain().focus().toggleCodeBlock().run();
     })
+
+    document.getElementById('btn-table').addEventListener('click',()=>{
+        editor.chain().focus().insertTable({rows:3, cols:3,withHeaderRow:true}).run();
+    })
 }
 
 
 // -------------------------------------------------- on my way adding theme 
+
 
 
 // const themeToggle = document.getElementById('themeToggle');
