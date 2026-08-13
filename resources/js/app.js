@@ -16,7 +16,29 @@ if(editorElement){
             hiddenTextArea.value=editor.getHTML();
         }
     })
+
+    document.getElementById('btn-bold').addEventListener('click',() => {
+        editor.chain().focus().toggleBold().run();
+    });
+
+    document.getElementById('btn-italic').addEventListener('click',() => {
+        editor.chain().focus().toggleItalic().run();
+    });
+
+    document.getElementById('btn-bullet').addEventListener('click',() => {
+        editor.chain().focus().toggleBulletList().run();
+    });
+
+    document.getElementById('btn-orderedList').addEventListener('click',() => {
+        editor.chain().focus().toggleOrderedList().run();
+    })
+
+    document.getElementById('btn-code').addEventListener('click',() => {
+        editor.chain().focus().toggleCodeBlock().run();
+    })
 }
+
+
 // -------------------------------------------------- on my way adding theme 
 
 

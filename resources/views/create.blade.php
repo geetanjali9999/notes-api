@@ -27,9 +27,20 @@
 
         <div class="mb-3">
             <label class="form-label">Content</label>
+            <div id="editor" class="form-control" style="min-height:150px"></div>
 
+            <!-- toolbar -->
+             <div class="btn-toolbar mb-2" role="toolbar">
+                <button type="button" id="btn-bold" class="btn btn-sm btn-outline-secondary me-1">Bold</button>
+                <button type="button" id="btn-italic" class="btn btn-sm btn-outline-secondary me-1">Italic</button>
+                <button type="button" id="btn-bullet" class="btn btn-sm btn-outline-secondary me-1">Bullet</button>
+                <button type="button" id="btn-orderedList" class="btn btn-sm btn-outline-secondary me-1">Ordered List</button>
+                <button type="button" id="btn-code" class="btn btn-sm btn-outline-secondary me-1">Code Blocks</button>
+             </div>
             <textarea name="content"
+                      id="content-hidden"
                       class="form-control"
+                      style="display:none;"
                       rows="5"
                       required></textarea>
         </div>
@@ -49,8 +60,7 @@
         </button>
 
         
-        <a href="{{ route('notes') }}"
-           class="btn btn-secondary">
+        <a href="{{ route('notes') }}" class="btn btn-secondary">
             Back
         </a>
 
