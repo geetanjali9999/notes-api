@@ -4,7 +4,7 @@
             <img src="{{ asset('images/logo/app_logo.svg') }}" class="img-fluid" alt="Notes App Logo" width="40">
         </div>
 
-        <a class=navbar-brand href="#">
+        <a class="navbar-brand" href="{{ route('dashboard') }}">
             Notes App
         </a>
 
