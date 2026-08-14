@@ -37,6 +37,7 @@
                 <button type="button" id="btn-orderedList" class="btn btn-sm btn-outline-secondary me-1">Ordered List</button>
                 <button type="button" id="btn-code" class="btn btn-sm btn-outline-secondary me-1">Code Blocks</button>
                 <button type="button" id="btn-table" class="btn btn-sm btn-outline-secondary me-1">Table</button>
+                <button type="button" id="btn-checklist" class="btn btn-sm btn-outline-secondary me-1">Checklist</button>
 
              </div>
             <textarea name="content"

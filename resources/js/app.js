@@ -10,6 +10,9 @@ import {TableCell} from '@tiptap/extension-table-cell';
 import {TableHeader} from '@tiptap/extension-table-header';
 
 // checklist for tiptop
+import {TaskList} from '@tiptap/extension-task-list';
+import {TaskItem} from '@tiptap/extension-task-item';
+
 
 
 // tiptap editor initialization
@@ -25,6 +28,8 @@ if(editorElement){
             TableRow,
             TableCell,
             TableHeader,
+            TaskList,
+            TaskItem.configure({nested: true}),
         ],
         content:hiddenTextArea.value,
         onUpdate: ({editor}) => {
@@ -32,6 +37,7 @@ if(editorElement){
         }
     })
 
+    
     document.getElementById('btn-bold').addEventListener('click',() => {
         editor.chain().focus().toggleBold().run();
     });
@@ -55,6 +61,11 @@ if(editorElement){
     document.getElementById('btn-table').addEventListener('click',()=>{
         editor.chain().focus().insertTable({rows:3, cols:3,withHeaderRow:true}).run();
     })
+
+    document.getElementById('btn-checklist').addEventListener('click',() => {
+        editor.chain().focus().toggleTasklist().run();
+    })
+
 }
 
 
